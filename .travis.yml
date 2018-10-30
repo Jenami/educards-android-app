@@ -20,9 +20,9 @@ android:
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 
+env:
+  CODECOV_TOKEN="6e1b91c8-0b05-4f97-b895-c81981813c43"
+
 script:
   - ./gradlew build check
-  
-before_script:
-  - mkdir -p "$ANDROID_HOME/licenses"
-  - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
+
