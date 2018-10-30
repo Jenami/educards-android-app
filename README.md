@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Educards-UNQ/educards-android-app.svg?branch=master)](https://travis-ci.org/Educards-UNQ/educards-android-app)
+[![Build Status](https://travis-ci.org/Jenami/educards-android-app.svg?branch=develop)](https://travis-ci.org/Jenami/educards-android-app)
 
 ### EDUCARDS
 
