@@ -3,6 +3,7 @@ matrix:
     language: java
     
     language: android
+
     
 android:
    components:
@@ -24,3 +25,6 @@ android:
 
 after_success:
 - bash <(curl -s https://codecov.io/bash)
+
+script:
+  - ./gradlew build check
