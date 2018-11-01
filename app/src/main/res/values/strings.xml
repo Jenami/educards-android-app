@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Educards UNQ</string>
+    <string name="app_name">EduCards UNQ</string>
 
     <string name="play">Play</string>
 
@@ -10,6 +10,13 @@
     <string name="card3">Carta3</string>
     <string name="card4">Carta4</string>
     <string name="card5">Carta5</string>
+
     <string name="tablero">Tablero</string>
+
+    <string name="slot1">Slot1</string>
+    <string name="slot2">Slot2</string>
+    <string name="slot3">Slot3</string>
+    <string name="slot4">Slot4</string>
+    <string name="slot5">Slot5</string>
 
 </resources>
