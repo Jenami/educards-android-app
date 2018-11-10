@@ -167,7 +167,7 @@
             <LinearLayout
                 android:id="@+id/margentop"
                 android:layout_width="343dp"
-                android:layout_height="82dp"
+                android:layout_height="73dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.555"
@@ -178,8 +178,8 @@
 
             <LinearLayout
                 android:id="@+id/linearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="92dp"
+                android:layout_width="372dp"
+                android:layout_height="115dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
@@ -188,61 +188,87 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/margentop">
 
-                <ImageView
-                    android:id="@+id/slot1"
-                    android:layout_width="70dp"
-                    android:layout_height="105dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/espacio_carta"
-                    android:contentDescription="@string/slot1" />
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/slot2"
-                    android:layout_width="70dp"
-                    android:layout_height="105dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/espacio_carta"
-                    android:contentDescription="@string/slot2" />
+                    <ImageView
+                        android:id="@+id/slot2"
+                        android:layout_width="70dp"
+                        android:layout_height="105dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/espacio_carta"
+                        android:contentDescription="@string/slot2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/slot3"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/slot1"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/slot3"
-                    android:layout_width="70dp"
-                    android:layout_height="105dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/espacio_carta"
-                    android:contentDescription="@string/slot3" />
+                    <ImageView
+                        android:id="@+id/slot3"
+                        android:layout_width="70dp"
+                        android:layout_height="105dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/espacio_carta"
+                        android:contentDescription="@string/slot3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/slot5"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/slot2"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/slot4"
-                    android:layout_width="70dp"
-                    android:layout_height="105dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/espacio_carta"
-                    android:contentDescription="@string/slot4" />
+                    <ImageView
+                        android:id="@+id/slot5"
+                        android:layout_width="70dp"
+                        android:layout_height="105dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/espacio_carta"
+                        android:contentDescription="@string/slot5"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/slot4"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/slot3"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageView
-                    android:id="@+id/slot5"
-                    android:layout_width="70dp"
-                    android:layout_height="105dp"
-                    android:layout_marginLeft="5dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/espacio_carta"
-                    android:contentDescription="@string/slot5" />
+                    <ImageView
+                        android:id="@+id/slot1"
+                        android:layout_width="70dp"
+                        android:layout_height="105dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/espacio_carta"
+                        android:contentDescription="@string/slot1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/slot2"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/slot4"
+                        android:layout_width="70dp"
+                        android:layout_height="105dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/espacio_carta"
+                        android:contentDescription="@string/slot4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.5"
+                        app:layout_constraintStart_toEndOf="@+id/slot5"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </android.support.constraint.ConstraintLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:id="@+id/margenbot"
                 android:layout_width="341dp"
-                android:layout_height="94dp"
+                android:layout_height="86dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
