@@ -19,7 +19,7 @@
 
 ## Retrospectivas
 
-|  :( | :) | * |
+| 😢 | 😀 | 💫 |
 | ------ | ------ | ------ |
 | Integrante menos | Creamos doodle |  | 
 |  | Charla difícil |  |
