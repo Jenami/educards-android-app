@@ -1,11 +1,13 @@
+Sprint 0 : 17/10/2018
+
 ## Tareas Comprometidas
-|  Tarea | Participantes | Puntaje | Tiempo aproximado | Sprint correpondiente | Estado |
+|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado |
 |  ------ | ------ | ------ | ------ | ------ | ------ |
-| Armar repositorios | Brian + Liza | <Now loading...> | 1hs | 0 | Completo |
-| Armar stack tecnologico | Brian + Liza + Jimena + Joaquin + Camila | <Now loading...> | 2hs | 0 | Completo |
-| CI funcionando | Ninguno | <Now loading...> | 0hs | 0 | Incompleto |
-| User Histories y sus estimaciones | Liza + Jimena + Brian + Joaquin | <Now loading...> | 1hs | 0 | En progreso |
-| VSM | Jimena + Liza | <Now loading...> | 2hs | 0 | Completo |
+| Armar repositorios | Brian + Liza | 1hs | 0 | Completo |
+| Armar stack tecnologico | Brian + Liza + Jimena + Joaquin + Camila | 2hs | 0 | Completo |
+| CI funcionando | Ninguno | 0hs | 0 | Incompleto |
+| User Histories y sus estimaciones | Liza + Jimena + Brian + Joaquin | 1hs | 0 | En progreso |
+| VSM | Jimena + Liza | 2hs | 0 | Completo |
 
 ## Retrospectivas
 

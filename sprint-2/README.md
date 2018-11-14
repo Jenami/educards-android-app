@@ -4,25 +4,25 @@
 - Las tareas estimadas para el próximo Sprint no se decidieron de manera acoorde.
 
 ## Tareas Comprometidas
-|  Tarea | Participantes | Puntaje | Tiempo aproximado | Sprint correpondiente | Estado |
+|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado |
 |  ------ | ------ | ------ | ------ | ------ | ------ |
-|  Documento de Sprint | Jimena | <Now loading 3> | 3hs | 2 | Completo |
-|  Subir Sprint como MD | Joaquin | <Now loading 2> | 2hs | 2 | Completo |
-|  Agregar Travis | Liza + Jimena | <Now loading 7> | 9hs | 2 | Incompleto |
-|  Agregar Codecov | Liza + Jimena | <Now loading 7> | 9hs | 2 | Incompleto |
-| Arrastrar las carta a su posición | Joaquin + Jimena |  <Now loading 4> | 3hs | 1 | Incompleto |
-| CICD en GitLab | Jimena + Brian | <Now loading 6> | 10hs | 1 | Completo |
+|  Documento de Sprint | Jimena | 3hs | 2 | Completo |
+|  Subir Sprint como MD | Joaquin | 2hs | 2 | Completo |
+|  Agregar Travis | Liza + Jimena | 9hs | 2 | Incompleto |
+|  Agregar Codecov | Liza + Jimena | 9hs | 2 | Incompleto |
+| Arrastrar las carta a su posición | Joaquin + Jimena | 3hs | 1 | Incompleto |
+| CICD en GitLab | Jimena + Brian | 10hs | 1 | Completo |
 
 ## Otras tareas realizadas
-| Descripción de tarea | Quien lo hizo | Puntaje | Tiempo en horas | Estado |
+| Descripción de tarea | Quien lo hizo | Tiempo en horas | Estado |
 |  ------ | ------ | ------ | ------ | ------ |
-|  Logo | Joaquin | <Now loading 2> | 2hs | 2 | Completo |
-|  Estilos de la app | Joaquin | <Now loading 3> | 3hs | 2 | Completo |
-| Inicialización API | Liza + Brian | <Now loading 5> | 8hs | 1 | Completo |
-| Reordenar los repositorios de trabajo | Brian | <Now loading 2> | 1,5hs | Completo |
-| Modelo de casos de uso del juego | Camila | <Now loading 4> | 4hs | Completo |
-| Refactor del modelo | Camila |  <Now loading 2> | 2hs | Completo |
-|  Review de VSM | Liza + Jimena | <Now loading 3> | 5hs | 1 | En proceso |
+|  Logo | Joaquin | 2hs | 2 | Completo |
+|  Estilos de la app | Joaquin | 3hs | 2 | Completo |
+| Inicialización API | Liza + Brian | 8hs | 1 | Completo |
+| Reordenar los repositorios de trabajo | Brian | 1,5hs | Completo |
+| Modelo de casos de uso del juego | Camila | 4hs | Completo |
+| Refactor del modelo | Camila | 2hs | Completo |
+|  Review de VSM | Liza + Jimena | 5hs | 1 | En proceso |
 
 ## Retrospectivas
 
