@@ -29,6 +29,8 @@ La app contará con un sistema de puntuación y ranking entre los diferentes jug
 
 - VSM : https://www.draw.io/?client=1#G1t04PWrZ0cz2JD5hdQrBP90ok-5RzXVBL
 
-- Casos de Uso y su estimación: https://docs.google.com/document/d/1WONArqjYKadxQEl_InY9P0b2d5gUXjncmQLwuCudnzo/edit
+- User Stories y su estimación: https://docs.google.com/document/d/1WONArqjYKadxQEl_InY9P0b2d5gUXjncmQLwuCudnzo/edit
+
+- Gráfico de velocidad: https://docs.google.com/document/d/1elTxrZnencjkIU3iMRl3Lr6cHfcHaxOrc6DT8vyBTEU/edit
 
 - Tablero de trello : https://trello.com/b/EW7D0skF/educards
