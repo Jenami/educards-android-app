@@ -38,8 +38,11 @@ public class Game {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
 	public Integer getFinalScore() {
 		return finalScore;
 	}
+
 }
+
+
