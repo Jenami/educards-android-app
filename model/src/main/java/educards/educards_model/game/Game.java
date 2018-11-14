@@ -38,8 +38,20 @@ public class Game {
 	public Player getPlayer() {
 		return player;
 	}
-	
+
+	public Board getBoard() {
+		return board;
+	}
+
 	public Integer getFinalScore() {
 		return finalScore;
 	}
+
+
+	public Player getPlayer() {
+		return player;
+	}
+
 }
+
+

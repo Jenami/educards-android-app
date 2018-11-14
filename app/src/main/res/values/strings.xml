@@ -13,6 +13,16 @@
 
     <string name="tablero">Tablero</string>
 
+    <string name="playCards">Jugar Cartas</string>
+
+    <string name="points">Puntaje</string>
+
+    <string name="rankingButton">Ranking</string>
+
+    <string name="rankingTitle">Ranking</string>
+
+
+
     <string name="slot1">Slot1</string>
     <string name="slot2">Slot2</string>
     <string name="slot3">Slot3</string>

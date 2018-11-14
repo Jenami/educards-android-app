@@ -16,7 +16,11 @@ public class Board {
 		cardsToPlay = cards;
 		this.generateCorrectOrder();
 	}
-	
+
+	public ArrayList<Card> getCardsToPlay() {
+		return cardsToPlay;
+	}
+
 	public void playCard(Integer position, Card card) {
 		if(playedCards.containsKey(position)) {
 			cardsToPlay.add(playedCards.get(position));
@@ -49,4 +53,6 @@ public class Board {
 		}
 		return results;
 	}
+
+
 }
