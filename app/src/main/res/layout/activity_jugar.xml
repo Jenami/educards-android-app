@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_index"
     tools:context=".JugarActivity">
 
     <LinearLayout
@@ -37,7 +38,7 @@
                 android:id="@+id/imageViewCard2"
                 android:layout_width="70dp"
                 android:layout_height="105dp"
-                android:background="@drawable/card_beethoven"
+                android:background="@drawable/abraham_lincoln"
                 android:contentDescription="@string/card2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
