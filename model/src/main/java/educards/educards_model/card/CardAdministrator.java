@@ -6,11 +6,17 @@ public class CardAdministrator {
 
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	
-	public void addCard(Card card) {
-		cards.add(card);
-	}
+	public CardAdministrator() {
+		CardGenerator generator = new CardGenerator();
+		ArrayList<Card> cards = generator.getCards();
+		this.cards = cards;
+	}	
 	
 	public ArrayList<Card> getCards(){
 		return cards;
+	}
+	
+	public void setCards(ArrayList<Card> cards) {
+		this.cards = cards;
 	}
 }

@@ -23,7 +23,7 @@ public class Game {
 	
 	private int calculateScore(ArrayList<Boolean> result) {
 		int score = 0;
-		for(int i=0; i<result.size();i++) {
+		for(int i=0; i< result.size() ;i++) {
 			if(result.get(i)) {
 				score += 20;
 			}
@@ -31,8 +31,12 @@ public class Game {
 		return score;
 	}
 	
-	public void setBoard(Board board) {
-		this.board = board;
+	public Board getBoard() {
+		return board;
+	}
+	
+	public Player getPlayer() {
+		return player;
 	}
 	
 	public Integer getFinalScore() {

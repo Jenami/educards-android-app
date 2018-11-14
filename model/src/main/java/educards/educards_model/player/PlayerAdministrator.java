@@ -12,6 +12,17 @@ public class PlayerAdministrator {
 		players.add(player);
 	}
 	
+	public Player getPlayer(String username) {
+		Player result = null;
+		for(int i=0; i<players.size();i++) {
+			Player player = players.get(i);
+			if(player.getUsername()== username) {
+				result = player;
+			}
+		}
+		return result;	
+		}
+	
 	public int getNumberOfPlayers(){
 		return players.size();
 	}

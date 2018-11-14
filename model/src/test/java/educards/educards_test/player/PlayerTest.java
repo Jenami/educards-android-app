@@ -1,4 +1,4 @@
-package educards.educards_model.test;
+package educards.educards_test.player;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,21 +13,13 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testGetId() {
+	public void builderTest() {
+		assertTrue("pepe" == player.getUsername());
 		assertTrue(1 == player.getId());
 	}
- 	@Test 
-	public void testGetUsername() {
-		assertTrue("pepe" == player.getUsername());
-	}
-	
+ 	
 	@Test
-	public void testGetHiScore() {
-		assertTrue(0 == player.getHiScore());
-	}
-	
-	@Test
-	public void saveHiScore() {
+	public void saveHiScoreTest() {
 		player.saveHiScore(40);
 		assertTrue(40 == player.getHiScore());
 	}

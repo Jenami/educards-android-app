@@ -25,6 +25,10 @@ public class Board {
 		cardsToPlay.remove(card);
 	}
 	
+	public ArrayList<Card> getCardsToPlay(){
+		return cardsToPlay;
+	}
+	
 	public HashMap<Integer,Card> getPlayedCards(){
 		return playedCards;
 	}
