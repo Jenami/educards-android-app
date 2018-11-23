@@ -12,7 +12,7 @@ Sprint 4: 14/11/2018
 ## Otras tareas realizadas
 
 | Descripción de tarea | Quien lo hizo | Tiempo en horas | Estado |
-| ------ | ------ | ------ | ------ | ------ |
+| ------ | ------ | ------ | ------ |
 | Documentacion: retrospectivas anteriores | Liza | 2hs | Completo |
 | Mejora de coverage: Testing | Camila | 2hs | Completo |
 | Documentacion de estimacion de velocidad | Liza | 1hs | En preceso |

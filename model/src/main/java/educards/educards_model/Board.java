@@ -1,22 +1,20 @@
-package educards.educards_model.game;
+package educards.educards_model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-import educards.educards_model.card.Card;
-
 public class Board {
 	
 	private ArrayList<Card> cardsToPlay;
 	private HashMap<Integer,Card> playedCards = new HashMap<Integer,Card>();
-	private ArrayList<Card> correctOrder;
+	private ArrayList<Integer> correctOrder;
 
-	public Board(ArrayList<Card> cards) {
-		cardsToPlay = cards;
+	public Board(ArrayList<Card> cardsToPlay) {
+		this.cardsToPlay = cardsToPlay;
 		this.generateCorrectOrder();
 	}
-
+	
 	public void playCard(Integer position, Card card) {
 		if(playedCards.containsKey(position)) {
 			cardsToPlay.add(playedCards.get(position));
@@ -33,22 +31,23 @@ public class Board {
 		return playedCards;
 	}
 	
-	public ArrayList<Card> getCorrectOrder(){
+	public ArrayList<Integer> getCorrectOrder(){
 		return correctOrder;
 	}
 	
 	public void generateCorrectOrder() {
-		correctOrder = new ArrayList<Card>(cardsToPlay);
-		Collections.sort(correctOrder, (c1,c2) -> c1.getYear().compareTo(c2.getYear()));
+		correctOrder = new ArrayList<Integer>();
+		for(int i=0; i<5; i++) {
+			correctOrder.add(cardsToPlay.get(i).getYear());
+		}
+		Collections.sort(correctOrder, (y1,y2) -> y1.compareTo(y2));
 	}
 	
 	public ArrayList<Boolean> checkPlayedCards(){
 		ArrayList<Boolean> results = new ArrayList<Boolean>();
 		for(int i=1; i<6; i++) {
-			results.add(correctOrder.get(i-1).equals(playedCards.get(i)));
+			results.add(correctOrder.get(i-1).equals(playedCards.get(i).getYear()));
 		}
 		return results;
 	}
-
-
 }

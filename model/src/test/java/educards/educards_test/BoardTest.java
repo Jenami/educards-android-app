@@ -1,11 +1,12 @@
-package educards.educards_test.game;
+package educards.educards_test;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
 import org.junit.Before;
 import org.junit.Test;
-import educards.educards_model.card.Card;
-import educards.educards_model.game.Board;
+
+import educards.educards_model.Board;
+import educards.educards_model.Card;
 
 public class BoardTest {
  	Board board;
@@ -17,11 +18,11 @@ public class BoardTest {
 	
 	@Before
 	public void setUp() {
-		mockCard = new Card(1,"mc1","h1",1543);
-		mockCard2 = new Card(2,"mc2","h2",1852);
-		mockCard3 = new Card(3,"mc3","h3",-460);
-		mockCard4 = new Card(4,"mc4","h4",289);
-		mockCard5 = new Card(5,"mc5","h5",1950);
+		mockCard = new Card(null, 1,"mc1","h1",1543, null);
+		mockCard2 = new Card(null, 2,"mc2","h2",1852, null);
+		mockCard3 = new Card(null, 3,"mc3","h3",-460, null);
+		mockCard4 = new Card(null, 4,"mc4","h4",289, null);
+		mockCard5 = new Card(null, 5,"mc5","h5",1950, null);
 		
 		ArrayList<Card> cards = new ArrayList<Card>();
 		cards.add(mockCard);
@@ -35,11 +36,11 @@ public class BoardTest {
 	
 	@Test
 	public void generateCorrectOrderTest() {
-		assertEquals(mockCard3, board.getCorrectOrder().get(0));
-		assertEquals(mockCard4, board.getCorrectOrder().get(1));
-		assertEquals(mockCard, board.getCorrectOrder().get(2));
-		assertEquals(mockCard2, board.getCorrectOrder().get(3));
-		assertEquals(mockCard5, board.getCorrectOrder().get(4));
+		assertEquals(mockCard3.getYear(), board.getCorrectOrder().get(0));
+		assertEquals(mockCard4.getYear(), board.getCorrectOrder().get(1));
+		assertEquals(mockCard.getYear(), board.getCorrectOrder().get(2));
+		assertEquals(mockCard2.getYear(), board.getCorrectOrder().get(3));
+		assertEquals(mockCard5.getYear(), board.getCorrectOrder().get(4));
 	}
 	
 	@Test
