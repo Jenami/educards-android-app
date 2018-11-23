@@ -12,7 +12,7 @@ public class Player {
 
 	public Player(String name, String password, Integer age, String image) {
 		this.name = name;
-        this.year = year;
+        this.year = age;
         this.image = image;
         this.password = password;
 	}
@@ -21,7 +21,7 @@ public class Player {
 		this.idPlayer = id;
 		this.image = image;
 		this.name = name;
-		this.year = year;
+		this.year = age;
 		this.password = password;
 	}
 
