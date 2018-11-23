@@ -110,7 +110,7 @@
                 android:layout_marginEnd="8dp"
                 android:background="@drawable/text_frame"
                 android:gravity="center"
-                android:text="@string/playerName"
+                android:text="@string/playerUsername"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -140,122 +140,102 @@
     <LinearLayout
         android:id="@+id/linearLayoutMid"
         android:layout_width="0dp"
-        android:layout_height="330dp"
+        android:layout_height="351dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/linearLayoutBottom"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayoutTop"
         app:layout_constraintVertical_bias="1.0">
 
+        <Button
+            android:id="@+id/buttonJugar"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="43dp"
+            android:layout_marginStart="130dp"
+            android:layout_marginTop="30dp"
+            android:text="@string/playCards"
+            android:textSize="14sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.501"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="2dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_weight="1"
             android:background="@drawable/background">
 
-            <LinearLayout
-                android:id="@+id/linearLayoutCenter"
-                android:layout_width="372dp"
-                android:layout_height="116dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:baselineAligned="false"
-                android:orientation="horizontal"
-                android:paddingTop="5dp"
+            <ImageView
+                android:id="@+id/slot1"
+                android:layout_width="70dp"
+                android:layout_height="105dp"
+                android:background="@drawable/espacio_carta"
+                android:contentDescription="@string/slot1"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <android.support.constraint.ConstraintLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <ImageView
-                        android:id="@+id/slot1"
-                        android:layout_width="70dp"
-                        android:layout_height="105dp"
-                        android:background="@drawable/espacio_carta"
-                        android:contentDescription="@string/slot1"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/slot2"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/slot2"
-                        android:layout_width="70dp"
-                        android:layout_height="105dp"
-                        android:background="@drawable/espacio_carta"
-                        android:contentDescription="@string/slot2"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/slot3"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/slot1"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/slot3"
-                        android:layout_width="70dp"
-                        android:layout_height="105dp"
-                        android:background="@drawable/espacio_carta"
-                        android:contentDescription="@string/slot3"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/slot4"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/slot2"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/slot4"
-                        android:layout_width="70dp"
-                        android:layout_height="105dp"
-                        android:background="@drawable/espacio_carta"
-                        android:contentDescription="@string/slot5"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@+id/slot5"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/slot3"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <ImageView
-                        android:id="@+id/slot5"
-                        android:layout_width="70dp"
-                        android:layout_height="105dp"
-                        android:background="@drawable/espacio_carta"
-                        android:contentDescription="@string/slot5"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.5"
-                        app:layout_constraintStart_toEndOf="@+id/slot4"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-
-                </android.support.constraint.ConstraintLayout>
-
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/buttonJugar"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="43dp"
-                android:text="@string/playCards"
-                android:textSize="14sp"
-                android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/linearLayoutCenter"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/slot2"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/slot2"
+                android:layout_width="70dp"
+                android:layout_height="105dp"
+                android:background="@drawable/espacio_carta"
+                android:contentDescription="@string/slot2"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/slot3"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/slot1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/slot3"
+                android:layout_width="70dp"
+                android:layout_height="105dp"
+                android:background="@drawable/espacio_carta"
+                android:contentDescription="@string/slot3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/slot4"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/slot2"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/slot4"
+                android:layout_width="70dp"
+                android:layout_height="105dp"
+                android:background="@drawable/espacio_carta"
+                android:contentDescription="@string/slot5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/slot5"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/slot3"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/slot5"
+                android:layout_width="70dp"
+                android:layout_height="105dp"
+                android:background="@drawable/espacio_carta"
+                android:contentDescription="@string/slot5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/slot4"
+                app:layout_constraintTop_toTopOf="parent" />
+
 
         </android.support.constraint.ConstraintLayout>
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

@@ -4,15 +4,24 @@ public class Player {
 	
 	private Integer idPlayer;
 	private String image;
-	private String username;
-	private Integer age;
+	private String name;
+	private Integer year;
 	private String password;
-	
+
+	public Player (){}
+
+	public Player(String name, String password, Integer age, String image) {
+		this.name = name;
+        this.year = year;
+        this.image = image;
+        this.password = password;
+	}
+
 	public Player(Integer id, String image, String name, Integer age, String password) {
 		this.idPlayer = id;
 		this.image = image;
-		this.username = name;
-		this.age = age;
+		this.name = name;
+		this.year = year;
 		this.password = password;
 	}
 
@@ -25,11 +34,11 @@ public class Player {
 	}
 	
 	public String getUsername() {
-		return username;
+		return name;
 	}
 	
 	public Integer getAge() {
-		return age;
+		return year;
 	}
 	
 	public String getPassword() {
