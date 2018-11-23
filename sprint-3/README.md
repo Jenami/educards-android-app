@@ -8,9 +8,9 @@
 - El equipo tuvo muchos compromisos fuera del proyecto por lo que no se comprometió con muchas tareas fuera de las necesarias.
 
 ## Tareas Comprometidas
-|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado |
+|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado | Puntaje | 
 |  ------ | ------ | ------ | ------ | ------ | ------ |
-| Modelos con cartas ordenadas | Camila | 4hs | 3 | Completo|
+| Modelos con cartas ordenadas | Camila | 4hs | 3 | Completo| 5 |
 | Reporte de cobertura | Brian | 3,5hs | 1 | Completo |
 | Travis en verde | Jimena + Liza | 4hs | 1 | Completo |
 | Arrastrar la carta | Joaquin + Jimena | 3hs | 2 | Completo |
