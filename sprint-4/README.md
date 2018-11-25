@@ -2,12 +2,12 @@ Sprint 4: 14/11/2018
 
 ## Tareas Comprometidas
 
-|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado |
-|  ------ | ------ | ------ | ------ | ------ |
-| Entrega con los Sprint escritos | Liza | 5hs | 0,1,2, 3 | Completo |
-| Estimar tareas para el próximo Sprint | Liza + Jimena | 1hs | 4 | Completo |
-| Validar/Terminar partida | Jimena + Camila | 8hs | 4 | Completo |
-| Mostrar ranking de los ganadores | Jimena | 2hs | 4 | Completo |
+|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado | Puntaje |
+|  ------ | ------ | ------ | ------ | ------ | ------ |
+| Entrega con los Sprint escritos | Liza | 5hs | 0,1,2, 3 | Completo | 3 |
+| Estimar tareas para el próximo Sprint | Liza + Jimena | 1hs | 4 | Completo | 1 |
+| Validar/Terminar partida | Jimena + Camila | 8hs | 4 | Completo | 5 |
+| Mostrar ranking de los ganadores | Jimena | 2hs | 4 | Completo | 4 |
 
 ## Otras tareas realizadas
 
@@ -28,7 +28,6 @@ Sprint 4: 14/11/2018
 
 ## Tareas estimadas para el próximo Sprint
 
-- Responder a los siguientes casos de uso:
-  - Como usuario quiero registrarme en ver un botón para registrarme.
-  - Como usuario quiero ingresar mi nombre, foto y edad para registrarme.
-  - Como usuario quiero poder inicar sesion.
+- Responder a los siguientes users stories:
+  - Como usuario quiero registrarme.
+  - Como usuario quiero iniciar sesion.

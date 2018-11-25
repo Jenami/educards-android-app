@@ -2,20 +2,20 @@ Sprint 1: 24/10/2018
 
 
 ## Tareas Comprometidas
-|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado |
+|  Tarea | Participantes | Tiempo aproximado | Sprint correpondiente | Estado | Puntaje |
 |  ------ | ------ | ------ | ------ | ------ | ------ |
-|  Guardar datos (firebase) | Ninguno | 0hs | 1 | Se decidió reemplarlo por una BBDD en Mongo |
-| Mover las carta (vista) |  Jimena + Joaquin | 5hs | Completo |
-| CI | Ninguno | 0hs | Incompleto |
-| User Stories | Jimena | 1hs | Completo |
+|  Guardar datos (firebase) | Ninguno | 0hs | 1 | Se decidió reemplazarlo por una BBDD en Mongo | 0 |
+| Mover las carta (vista) |  Jimena + Joaquin | 5hs | Completo | 3 |
+| CI | Ninguno | 0hs | Incompleto | 3 |
+| User Stories | Jimena | 1hs | Completo | 1 |
 
 ## Otras tareas realizadas
 
-| Descripción de tarea | Quien lo hizo | Tiempo en horas | Estado |
+| Descripción de tarea | Quien lo hizo | Tiempo en horas | Estado | Puntaje |
 | ------ | ------ | ------ | ------ | ------ |
-| Reunion de planificación de trabajos | Camila + Jimena + Liza + Joaquin | 1,5hs | Completo |
-| Armado del UML | Camila + Liza + Jimena | 1hs | Completo |
-| Modelo de juego | Camila | 4hs | En proceso |
+| Reunion de planificación de trabajos | Camila + Jimena + Liza + Joaquin | 1,5hs | Completo | 3 |
+| Armado del UML | Camila + Liza + Jimena | 1hs | Completo | 2 |
+| Modelo de juego | Camila | 4hs | En proceso | 5 |
 
 ## Retrospectivas
 
