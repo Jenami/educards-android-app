@@ -9,12 +9,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import educards.educards_model.card.Card;
-import educards.educards_model.game.Game;
-import educards.educards_model.player.Player;
+import java.util.List;
+import educards.educards_model.Board;
+import educards.educards_model.Card;
+import educards.educards_model.Educards;
+import educards.educards_model.EducardsFactory;
+import educards.educards_model.Player;
+import educards.educards_model.Ranking;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 
 public class JugarActivity extends AppCompatActivity {
@@ -23,11 +31,16 @@ public class JugarActivity extends AppCompatActivity {
     ImageView target1, target2, target3, target4, target5;
     Card card1, card2, card3, card4, card5;
     Player player;
-    Game game;
+    Board board;
+    Educards educards;
 
     Button playCardsButton;
     Button seeRankingButton;
 
+    ArrayList<String> scoreParsed;
+
+    List<Ranking> ranking;
+    ArrayList<String> rankingParsed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,79 +48,110 @@ public class JugarActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_jugar);
 
+        card1 = new Card ("beethoven", 1, "Beethoven", "history1",1770, "bee") ;
+        card2 = new Card ("abraham", 2, "Abraham", "history2",1865, "lincoln") ;
+        card3 = new Card ("torre", 3, "Torre Eifel", "history3",1889, "bee") ;
+        card4 = new Card ("mona", 4, "Mona Lisa", "history4",1503, "monalisa") ;
+        card5 = new Card ("hitler", 5, "Hitler", "history5",1934, "bee") ;
+
+        image1 = findViewById(R.id.imageViewCard1);
+        image1.setTag(card1);
+        image2 = findViewById(R.id.imageViewCard2);
+        image2.setTag(card2);
+        image3 = findViewById(R.id.imageViewCard3);
+        image3.setTag(card3);
+        image4 = findViewById(R.id.imageViewCard4);
+        image4.setTag(card4);
+        image5 = findViewById(R.id.imageViewCard5);
+        image5.setTag(card5);
+
+        target1 = findViewById(R.id.slot1);
+        target1.setTag(1);
+        target2 = findViewById(R.id.slot2);
+        target2.setTag(2);
+        target3 = findViewById(R.id.slot3);
+        target3.setTag(3);
+        target4 = findViewById(R.id.slot4);
+        target4.setTag(4);
+        target5 = findViewById(R.id.slot5);
+        target5.setTag(5);
+
+        image1.setOnLongClickListener(longClickListener);
+        image2.setOnLongClickListener(longClickListener);
+        image3.setOnLongClickListener(longClickListener);
+        image4.setOnLongClickListener(longClickListener);
+        image5.setOnLongClickListener(longClickListener);
+
+        target1.setOnDragListener(dragListener);
+        target2.setOnDragListener(dragListener);
+        target3.setOnDragListener(dragListener);
+        target4.setOnDragListener(dragListener);
+        target5.setOnDragListener(dragListener);
+
+
         if (getIntent().hasExtra("unq.alu.educards_android_app.EXTRA")) {
             TextView name = findViewById(R.id.textViewNamePlayer);
             String text = getIntent().getExtras().getString("unq.alu.educards_android_app.EXTRA");
             name.setText(text);
 
-            //El orden correcto es 5,4,3,2,1 (al reves del que aparecen)
+            ArrayList<Card> cards = new ArrayList<>();
+            cards.add(card1); cards.add(card2); cards.add(card3); cards.add(card4); cards.add(card5);
 
-            card1 = new Card(1, "Beethoven", "9naSinfonia", 1949);
-            card2 = new Card(2, "Abraham", "Bum", 1948);
-            card3 = new Card(3, "Torre", "Paris", 1947);
-            card4 = new Card(4, "Mona", "DaVinci", 1946);
-            card5 = new Card(5, "Hitler", "Hail", 1945);
-
-            ArrayList<Card> cartas = new ArrayList<Card>();
-            cartas.add(card1);
-            cartas.add(card2);
-            cartas.add(card3);
-            cartas.add(card4);
-            cartas.add(card5);
-
-            player = new Player(0, text);
-
-            game = new Game(player, cartas); //aca ya crea un board
-
-            image1 = findViewById(R.id.imageViewCard1);
-            image1.setTag(card1);
-            image2 = findViewById(R.id.imageViewCard2);
-            image2.setTag(card2);
-            image3 = findViewById(R.id.imageViewCard3);
-            image3.setTag(card3);
-            image4 = findViewById(R.id.imageViewCard4);
-            image4.setTag(card4);
-            image5 = findViewById(R.id.imageViewCard5);
-            image5.setTag(card5);
-
-
-            target1 = findViewById(R.id.slot1);
-            target2 = findViewById(R.id.slot2);
-            target3 = findViewById(R.id.slot3);
-            target4 = findViewById(R.id.slot4);
-            target5 = findViewById(R.id.slot5);
-
-            image1.setOnLongClickListener(longClickListener);
-            image2.setOnLongClickListener(longClickListener);
-            image3.setOnLongClickListener(longClickListener);
-            image4.setOnLongClickListener(longClickListener);
-            image5.setOnLongClickListener(longClickListener);
-
-            target1.setOnDragListener(dragListener);
-            target2.setOnDragListener(dragListener);
-            target3.setOnDragListener(dragListener);
-            target4.setOnDragListener(dragListener);
-            target5.setOnDragListener(dragListener);
-
+            Card cardX = new Card("", 2, "", "", 0, "");
+            board = new Board(cards);
+            educards = new Educards();
+            educards.setBoard(board);
+            for (int i= 1; i<6; i++){
+                educards.board.playCard(i, cardX);
+            }
 
             playCardsButton = findViewById(R.id.buttonJugar);
             playCardsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    openPlayCardsDialog();
+
+                    player = new Player();
+                    educards.finishGame(player);
+
+                    List<Integer> rankings = educards.ranking.getRanking();
+                    scoreParsed = new ArrayList<>();
+
+                    for (Integer r : rankings) {
+                        scoreParsed.add(" "+ r.toString());
+                    }
+
+                    openPlayCardsDialog(text, scoreParsed);
                 }
             });
-
 
             seeRankingButton = findViewById(R.id.buttonRanking);
             seeRankingButton.setOnClickListener(new View.OnClickListener() {
+
                 @Override
                 public void onClick(View v) {
-                    openRankingDialog();
+                    new EducardsFactory().getServiceFactory().getRankings(new Callback<List<Ranking>>() {
+                        @Override
+                        public void success(List<Ranking> response, Response response2) {
+                            ranking = (List<Ranking>) response;
+
+                            rankingParsed = new ArrayList<String>();
+
+                            for (Ranking r : ranking)
+                            {
+                                rankingParsed.add( " " + r.getName() + " --- " + r.getRank().toString() + " " );
+                            }
+
+                            openRankingDialog(rankingParsed);
+                        }
+
+                        @Override
+                        public void failure(RetrofitError error) {
+
+                        }
+                    });
+
                 }
             });
-
-
         }
     }
 
@@ -128,6 +172,7 @@ public class JugarActivity extends AppCompatActivity {
         public boolean onDrag(View v, DragEvent event) {
 
             int action = event.getAction();
+            View vi = (View) event.getLocalState();
 
             switch (action) {
                 case DragEvent.ACTION_DRAG_ENTERED:
@@ -138,67 +183,31 @@ public class JugarActivity extends AppCompatActivity {
                     break;
                 case DragEvent.ACTION_DROP:
 
-                    View vi = (View) event.getLocalState();
-                    ConstraintLayout owner1 = (ConstraintLayout) vi.getParent();
-                    owner1.removeView(vi);//remove the dragged view
-                    ConstraintLayout container = (ConstraintLayout) v.getParent();//caste the view into LinearLayout as our drag acceptable layout is LinearLayout
-                    container.addView(vi);//Add the dragged view
-
+                ConstraintLayout owner1 = (ConstraintLayout) vi.getParent();
+                owner1.removeView(vi);//remove the dragged view
+                ConstraintLayout container = (ConstraintLayout) v.getParent();
+                container.addView(vi);//Add the dragged view
 
                     if (v.getId() == target1.getId()) {
-
-                        game.getBoard().playCard(1, (Card) vi.getTag());
-                        vi.animate()
-                                .x(target1.getX())
-                                .y(target1.getY())
-                                .setDuration(700)
-                                .start();
-                        v.setVisibility(View.INVISIBLE);
-
+                        educards.board.playCard(1, ((Card) vi.getTag()));
+                        animateView(vi, v, target1);
                     }
                     if (v.getId() == target2.getId()) {
-
-                        game.getBoard().playCard(2, (Card) vi.getTag());
-                        vi.animate()
-                                .x(target2.getX())
-                                .y(target2.getY())
-                                .setDuration(700)
-                                .start();
-                        v.setVisibility(View.INVISIBLE);
-
+                        educards.board.playCard(2, (Card) vi.getTag());
+                        animateView(vi, v, target2);
                     }
                     if (v.getId() == target3.getId()) {
-                        game.getBoard().playCard(3, (Card) vi.getTag());
-                        vi.animate()
-                                .x(target3.getX())
-                                .y(target3.getY())
-                                .setDuration(700)
-                                .start();
-                        v.setVisibility(View.INVISIBLE);
-
+                        educards.board.playCard(3, (Card) vi.getTag());
+                        animateView(vi, v, target3);
                     }
                     if (v.getId() == target4.getId()) {
-
-                        game.getBoard().playCard( 4, (Card) vi.getTag());
-                        vi.animate()
-                                .x(target4.getX())
-                                .y(target4.getY())
-                                .setDuration(700)
-                                .start();
-                        v.setVisibility(View.INVISIBLE);
-
+                        educards.board.playCard( 4, (Card) vi.getTag());
+                        animateView(vi, v, target4);
                     }
                     if (v.getId() == target5.getId()) {
-
-                        game.getBoard().playCard( 5, (Card) vi.getTag());
-                        vi.animate()
-                                .x(target5.getX())
-                                .y(target5.getY())
-                                .setDuration(700)
-                                .start();
-                        v.setVisibility(View.INVISIBLE);
+                        educards.board.playCard( 5, (Card) vi.getTag());
+                        animateView(vi, v, target5);
                     }
-
                     break;
                 case DragEvent.ACTION_DRAG_ENDED:
 
@@ -207,38 +216,51 @@ public class JugarActivity extends AppCompatActivity {
             return true;
         }
 
-
+        void animateView(View animatedView, View view, View target){
+            animatedView.animate()
+                    .x(target.getX())
+                    .y(target.getY())
+                    .setDuration(700)
+                    .start();
+            view.setVisibility(View.INVISIBLE);
+        }
     };
 
-
     //new Dialog para el boton Jugar cartas
-    public void openPlayCardsDialog() {
-        game.finishGame();
+    public void openPlayCardsDialog(String text, ArrayList<String> scores) {
 
         Bundle bundle = new Bundle();
 
-        bundle.putString("activity", player.getUsername() + " : Tu puntuacion es " + game.getFinalScore().toString());
+        Integer number = 0;
+        for (String score : scores){
+            bundle.putString(number.toString(), score);
+            number++;
+        }
+        bundle.putString("total", number.toString());
+        bundle.putString("name", text);
 
         JugarDialog jugarDialog = new JugarDialog();
-
         jugarDialog.setArguments(bundle);
-
         jugarDialog.show(getSupportFragmentManager(), "dialog");
 
     }
 
-    //new Dialog para el boton ranking
-    public void openRankingDialog() {
+    //new Dialog para el boton Ranking
+    public void openRankingDialog(ArrayList<String> rankings) {
 
         Bundle bundle = new Bundle();
 
-        bundle.putString("activity", player.getUsername() + " : Tu mejor puntuacion es " + game.getPlayer().getHiScore().toString());
+        Integer number = 0;
+        for (String ranking : rankings){
+            bundle.putString(number.toString(), ranking);
+            number++;
+        }
+        bundle.putString("total", number.toString());
 
         RankingDialog rankingDialog = new RankingDialog();
-
         rankingDialog.setArguments(bundle);
-
         rankingDialog.show(getSupportFragmentManager(), "dialog");
 
     }
+
 }

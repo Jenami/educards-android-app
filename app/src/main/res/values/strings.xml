@@ -1,9 +1,24 @@
 <resources>
+
+
     <string name="app_name">EduCards UNQ</string>
+    <string name="logo">Logo</string>
 
-    <string name="play">Play</string>
+    <string name="register">Registrarse</string>
 
-    <string name="playerName">Nombre</string>
+    <string name="registerLogin">Registrarse</string>
+    <string name="login">Log In</string>
+    <string name="playerUsernameLogin">Usuario</string>
+    <string name="playerPasswordLogin">Contraseña</string>
+
+    <string name="playerNameRegReg">Nombre</string>
+    <string name="playerAge">Edad</string>
+    <string name="playerImage">Elegir imagen</string>
+    <string name="playerUsername">Usuario</string>
+    <string name="playerPassword">Contraseña</string>
+
+
+    <string name="play">Jugar</string>
 
     <string name="card1">Carta1</string>
     <string name="card2">Carta2</string>
@@ -11,22 +26,19 @@
     <string name="card4">Carta4</string>
     <string name="card5">Carta5</string>
 
-    <string name="tablero">Tablero</string>
-
-    <string name="playCards">Jugar Cartas</string>
-
-    <string name="points">Puntaje</string>
-
-    <string name="rankingButton">Ranking</string>
-
-    <string name="rankingTitle">Ranking</string>
-
-
-
     <string name="slot1">Slot1</string>
     <string name="slot2">Slot2</string>
     <string name="slot3">Slot3</string>
     <string name="slot4">Slot4</string>
     <string name="slot5">Slot5</string>
+
+    <string name="board">Tablero</string>
+    <string name="playCards">Jugar Cartas</string>
+    <string name="rankingButton">Ranking</string>
+
+    <string name="points">Puntaje</string>
+
+    <string name="rankingTitle">Ranking</string>
+
 
 </resources>

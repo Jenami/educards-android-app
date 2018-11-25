@@ -7,7 +7,7 @@ import java.util.HashMap;
 public class Board {
 	
 	private ArrayList<Card> cardsToPlay;
-	private HashMap<Integer,Card> playedCards = new HashMap<Integer,Card>();
+	private HashMap<Integer,Card> playedCards = new HashMap<>();
 	private ArrayList<Integer> correctOrder;
 
 	public Board(ArrayList<Card> cardsToPlay) {
@@ -44,7 +44,7 @@ public class Board {
 	}
 	
 	public ArrayList<Boolean> checkPlayedCards(){
-		ArrayList<Boolean> results = new ArrayList<Boolean>();
+		ArrayList<Boolean> results = new ArrayList<>();
 		for(int i=1; i<6; i++) {
 			results.add(correctOrder.get(i-1).equals(playedCards.get(i).getYear()));
 		}

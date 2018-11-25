@@ -1,11 +1,22 @@
 package educards.educards_model;
 
-import java.util.ArrayList;
-
 public class Ranking {
-	
-	ArrayList<Integer> ranking = new ArrayList<Integer>();
-	
-	public Ranking() {}
 
+    String playerName;
+    Integer rank;
+
+    public Ranking(){}
+
+    public Ranking(String name, Integer rank){
+        this.playerName = name;
+        this.rank = rank;
+    }
+
+    public String getName() {
+        return playerName;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
 }
