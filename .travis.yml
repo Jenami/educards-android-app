@@ -23,7 +23,6 @@ after_success:
   - bash <(curl -s https://codecov.io/bash)
 
 script:
-  - ./gradlew check
-  - ./gradlew build check
   - ./gradlew build jacocoTestReport
-  - ./gradlew test
+  - ./gradlew cucumber
+
