@@ -1,13 +1,13 @@
 package educards.educards_model;
 
-public class Ranking {
+public class RankingModel {
 
     String playerName;
     Integer rank;
 
-    public Ranking(){}
+    public RankingModel(){}
 
-    public Ranking(String name, Integer rank){
+    public RankingModel(String name, Integer rank){
         this.playerName = name;
         this.rank = rank;
     }

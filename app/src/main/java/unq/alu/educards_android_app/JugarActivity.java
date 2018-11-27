@@ -19,7 +19,9 @@ import educards.educards_model.Card;
 import educards.educards_model.Educards;
 import educards.educards_model.EducardsFactory;
 import educards.educards_model.Player;
-import educards.educards_model.Ranking;
+import educards.educards_model.PointsPlayer;
+import educards.educards_model.RankingAPI;
+import educards.educards_model.RankingModel;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -39,9 +41,11 @@ public class JugarActivity extends AppCompatActivity {
 
     ArrayList<String> scoreParsed;
 
-    List<Ranking> ranking;
+    List<RankingModel> ranking;
     ArrayList<String> rankingParsed;
 
+    Integer id;
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,28 +80,30 @@ public class JugarActivity extends AppCompatActivity {
         target5 = findViewById(R.id.slot5);
         target5.setTag(5);
 
-        image1.setOnLongClickListener(longClickListener);
-        image2.setOnLongClickListener(longClickListener);
-        image3.setOnLongClickListener(longClickListener);
-        image4.setOnLongClickListener(longClickListener);
-        image5.setOnLongClickListener(longClickListener);
 
-        target1.setOnDragListener(dragListener);
-        target2.setOnDragListener(dragListener);
-        target3.setOnDragListener(dragListener);
-        target4.setOnDragListener(dragListener);
-        target5.setOnDragListener(dragListener);
+        if (getIntent().hasExtra("name")) {
+            image1.setOnLongClickListener(longClickListener);
+            image2.setOnLongClickListener(longClickListener);
+            image3.setOnLongClickListener(longClickListener);
+            image4.setOnLongClickListener(longClickListener);
+            image5.setOnLongClickListener(longClickListener);
 
+            target1.setOnDragListener(dragListener);
+            target2.setOnDragListener(dragListener);
+            target3.setOnDragListener(dragListener);
+            target4.setOnDragListener(dragListener);
+            target5.setOnDragListener(dragListener);
 
-        if (getIntent().hasExtra("unq.alu.educards_android_app.EXTRA")) {
             TextView name = findViewById(R.id.textViewNamePlayer);
-            String text = getIntent().getExtras().getString("unq.alu.educards_android_app.EXTRA");
+            String text = getIntent().getExtras().getString("name");
+            this.id = getIntent().getExtras().getInt("id");
+            this.username = text;
             name.setText(text);
 
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card1); cards.add(card2); cards.add(card3); cards.add(card4); cards.add(card5);
 
-            Card cardX = new Card("", 2, "", "", 0, "");
+            Card cardX = new Card("", 100, "", "", 0, "");
             board = new Board(cards);
             educards = new Educards();
             educards.setBoard(board);
@@ -109,19 +115,31 @@ public class JugarActivity extends AppCompatActivity {
             playCardsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    Integer score = educards.finishGame(id);
+                        new EducardsFactory().getServiceFactory().addRanking(new RankingAPI(id, score), new Callback<List<Integer>>() {
+                            @Override
+                            public void success(List<Integer> response, Response response2) {
+                                educards.setPointsPlayer (new PointsPlayer(response));
+                                //Toast.makeText(getBaseContext(), "agrego el ranking", Toast.LENGTH_LONG).show();
 
-                    player = new Player();
-                    educards.finishGame(player);
+                                List<Integer> rankings = educards.pointsPlayer.getPoints();
+                                Toast.makeText(getBaseContext(),rankings.get(0).toString(), Toast.LENGTH_LONG).show();
 
-                    List<Integer> rankings = educards.ranking.getRanking();
-                    scoreParsed = new ArrayList<>();
+                                scoreParsed = new ArrayList<>();
+                                for (Integer r : rankings) {
+                                    scoreParsed.add(" "+ r.toString());
+                                }
 
-                    for (Integer r : rankings) {
-                        scoreParsed.add(" "+ r.toString());
+                                openPlayCardsDialog(username, scoreParsed);
+                            }
+
+                            @Override
+                            public void failure(RetrofitError error) {
+                                Toast.makeText(getBaseContext(), "Fallo el addRanking "+ id.toString(), Toast.LENGTH_LONG).show();
+                            }
+                        });
                     }
 
-                    openPlayCardsDialog(text, scoreParsed);
-                }
             });
 
             seeRankingButton = findViewById(R.id.buttonRanking);
@@ -129,15 +147,14 @@ public class JugarActivity extends AppCompatActivity {
 
                 @Override
                 public void onClick(View v) {
-                    new EducardsFactory().getServiceFactory().getRankings(new Callback<List<Ranking>>() {
+                    new EducardsFactory().getServiceFactory().getRankings(new Callback<List<RankingModel>>() {
                         @Override
-                        public void success(List<Ranking> response, Response response2) {
-                            ranking = (List<Ranking>) response;
+                        public void success(List<RankingModel> response, Response response2) {
+                            ranking = (List<RankingModel>) response;
 
                             rankingParsed = new ArrayList<String>();
 
-                            for (Ranking r : ranking)
-                            {
+                            for (RankingModel r : ranking) {
                                 rankingParsed.add( " " + r.getName() + " --- " + r.getRank().toString() + " " );
                             }
 
@@ -154,6 +171,7 @@ public class JugarActivity extends AppCompatActivity {
             });
         }
     }
+
 
     View.OnLongClickListener longClickListener = new View.OnLongClickListener() {
         @Override
@@ -245,7 +263,7 @@ public class JugarActivity extends AppCompatActivity {
 
     }
 
-    //new Dialog para el boton Ranking
+    //new Dialog para el boton RankingAPI
     public void openRankingDialog(ArrayList<String> rankings) {
 
         Bundle bundle = new Bundle();

@@ -34,7 +34,8 @@ public class MainActivity extends AppCompatActivity {
                     public void success(Player response, Response response2) {
                         Player p = (Player)response;
                         Intent startIntent = new Intent(MainActivity.this, JugarActivity.class);
-                        startIntent.putExtra("unq.alu.educards_android_app.EXTRA",p.getUsername());
+                        startIntent.putExtra("id",p.getId());
+                        startIntent.putExtra("name", p.getUsername());
                         startActivity(startIntent);
                     }
 
@@ -42,7 +43,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void failure(RetrofitError error) {
                         Toast.makeText(getBaseContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
-                        System.out.print(error.toString());
                     }
                 });
             }

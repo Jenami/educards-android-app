@@ -16,15 +16,11 @@ public class EducardsFactory {
 
     public EducardsService getServiceFactory() {
 
-        String SERVER_IP = "192.168.0.7"; //revisar
-        String API_URL = "http://" + SERVER_IP + ":8080";
+        //String SERVER_IP = "192.168.0.7"; //revisar
+        //String API_URL = "http://" + SERVER_IP + ":8080";
+        String API_URL = "https://educards-unq.herokuapp.com/";
 
-        //Gson gson = new GsonBuilder().setLenient().create();
-
-        //Retrofit retrofit = new Retrofit.Builder().baseUrl(API_URL).addConverterFactory(GsonConverterFactory.
-          //      create(gson)).build();
         RestAdapter restAdapter = new RestAdapter.Builder().setEndpoint(API_URL).build();
-
 
         EducardsService educardsService = restAdapter.create(EducardsService.class);
 

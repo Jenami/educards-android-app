@@ -12,13 +12,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import educards.educards_model.EducardsFactory;
-import educards.educards_model.Ranking;
-import educards.educards_model.RankingPlayer;
-import retrofit.Callback;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
-
 public class RankingDialog extends AppCompatDialogFragment {
 
     @Override

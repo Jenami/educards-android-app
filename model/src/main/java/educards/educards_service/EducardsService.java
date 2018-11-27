@@ -1,11 +1,13 @@
 package educards.educards_service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import educards.educards_model.Player;
-import educards.educards_model.Ranking;
-import educards.educards_model.RankingPlayer;
+import educards.educards_model.PlayerApi;
+import educards.educards_model.RankingAPI;
 
+import educards.educards_model.RankingModel;
 import retrofit.Callback;
 import retrofit.client.Response;
 import retrofit.http.Body;
@@ -19,12 +21,12 @@ public interface EducardsService {
          void getPlayer(@Query ("name") String username, @Query ("password") String password, Callback<Player> player);
 
         @POST("/api/players")
-        void addPlayer(@Body Player player, Callback<Response> r);
+        void addPlayer(@Body PlayerApi player, Callback<Response> r);
 
         @GET("/api/rankings")
-        void getRankings(Callback <List<Ranking>> callback);
+        void getRankings(Callback <List<RankingModel>> callback);
 
         @POST("/api/rankings")
-        void addRanking (@Body Ranking ranking);
+        void addRanking (@Body RankingAPI ranking, Callback<List<Integer>> points);
 
 }

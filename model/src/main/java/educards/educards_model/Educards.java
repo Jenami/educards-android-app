@@ -1,15 +1,20 @@
 package educards.educards_model;
 
 import java.util.ArrayList;
+import java.util.List;
+
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class Educards {
 
 	public Player player;
 	public Board board;
-	public RankingPlayer ranking;
+	public PointsPlayer pointsPlayer;
 	
 	public Educards() {
-		ranking = new RankingPlayer();
+		pointsPlayer = new PointsPlayer(new ArrayList<Integer>());
 	}
 	
 	public void registerPlayer(Player player) {
@@ -22,13 +27,15 @@ public class Educards {
 
 	public Board getBoard(){return this.board;}
 	
-	public void setRanking(RankingPlayer ranking) {
-		this.ranking = ranking;
+	public void setPointsPlayer(PointsPlayer pointsPlayer) {
+		this.pointsPlayer = pointsPlayer;
 	}
 
-	public void finishGame(Player p){
+	public Integer finishGame(Integer id){
 		Integer finalScore = this.calculateScore(board.checkPlayedCards());
-		ranking.getRanking().add(finalScore);
+		//pointsPlayer.getPoints().add(finalScore);
+        //this.applyScore(id, finalScore);
+        return finalScore;
 	}
 
 	public int calculateScore(ArrayList<Boolean> result){
@@ -43,4 +50,6 @@ public class Educards {
 	public Player getPlayer() {
 		return player;
 	}
+
+
 }
