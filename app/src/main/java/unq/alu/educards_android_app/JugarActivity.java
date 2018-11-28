@@ -132,7 +132,7 @@ public class JugarActivity extends AppCompatActivity {
             playCardsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Integer score = educards.finishGame(id);
+                    Integer score = educards.finishGame();
 
                     new EducardsFactory().getServiceFactory().addRanking(new RankingAPI(id, score), new Callback<List<Integer>>() {
                         @Override
