@@ -63,10 +63,8 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
             });
-
-
-
         }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -74,12 +72,11 @@ public class RegisterActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             image.setImageURI(selectedImage);
         }
-
-
     }
 
     private class RegisterPlayer extends AsyncTask<Void, Void, Void>{
         Bitmap bit;
+        String encodedBitmap;
 
         public RegisterPlayer (Bitmap b){
             bit = b;
@@ -87,9 +84,12 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bit.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            String encodedBitmap = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT);
+            if (bit != null) {
+                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+                bit.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
+                encodedBitmap = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT);
+            }
+            encodedBitmap = "default";
 
             PlayerApi playerToAdd = new PlayerApi( username.getText().toString(), Integer.valueOf(age.getText().toString()),
                     encodedBitmap, password.getText().toString());

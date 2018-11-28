@@ -26,18 +26,20 @@ public class MainActivity extends AppCompatActivity {
         final EditText playerName = findViewById(R.id.editTextUsernameLogin);
         final EditText playerPassword = findViewById(R.id.editTextPasswordLogin);
 
-        Button playButton = findViewById(R.id.playButton);
-        playButton.setOnClickListener(new View.OnClickListener() {
+        Button loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 new EducardsFactory().getServiceFactory().getPlayer(playerName.getText().toString(),playerPassword.getText().toString(), new Callback<Player>() {
                     @Override
                     public void success(Player response, Response response2) {
                         p = (Player)response;
-                        Intent startIntent = new Intent(MainActivity.this, JugarActivity.class);
+                        Intent startIntent = new Intent(MainActivity.this, HomeActivity.class);
                         startIntent.putExtra("id",p.getId());
                         startIntent.putExtra("name", p.getUsername());
                         startIntent.putExtra("image", p.getImage() );
+                        startIntent.putExtra("password", p.getPassword());
+                        startIntent.putExtra("age", p.getAge());
                         startActivity(startIntent);
                     }
 

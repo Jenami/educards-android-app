@@ -109,8 +109,10 @@ public class JugarActivity extends AppCompatActivity {
 
             String image1 = getIntent().getExtras().getString("image");
 
-            Bitmap res = stringToBitmap(image1);
-            userImage.setImageBitmap(res);
+            //if (image1 != "default" || image1 != "") {
+                Bitmap res = stringToBitmap(image1);
+                userImage.setImageBitmap(res);
+            //}
 
             this.id = getIntent().getExtras().getInt("id");
             this.username = text;
