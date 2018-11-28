@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background_index"
     tools:context=".JugarActivity">
 
     <LinearLayout
@@ -54,11 +55,11 @@
         android:layout_width="0dp"
         android:layout_height="456dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTop"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayoutTop">
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
@@ -193,7 +194,7 @@
                 android:id="@+id/imageViewCard2"
                 android:layout_width="70dp"
                 android:layout_height="105dp"
-                android:background="@drawable/card_beethoven"
+                android:background="@drawable/abraham_lincoln"
                 android:contentDescription="@string/card2"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
