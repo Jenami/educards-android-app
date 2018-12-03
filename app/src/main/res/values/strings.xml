@@ -1,10 +1,11 @@
 <resources>
 
-
     <string name="app_name">EduCards UNQ</string>
     <string name="logo">Logo</string>
 
     <string name="register">Registrarse</string>
+    <string name="editUser">Editar perfil</string>
+    <string name="saveChanges">Guardar cambios</string>
 
     <string name="registerLogin">Registrarse</string>
     <string name="login">Log In</string>

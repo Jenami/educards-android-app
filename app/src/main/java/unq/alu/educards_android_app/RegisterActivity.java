@@ -54,19 +54,16 @@ public class RegisterActivity extends AppCompatActivity {
                }
             });
 
-            image.setOnClickListener(new View.OnClickListener() {
+            Button btnAddImage = findViewById(R.id.addImageButton);
+            btnAddImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent galleryIntent = new Intent( Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                     startActivityForResult(galleryIntent, RESULT_LOAD_IMAGE);
-
-
                 }
             });
-
-
-
         }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -74,12 +71,11 @@ public class RegisterActivity extends AppCompatActivity {
             Uri selectedImage = data.getData();
             image.setImageURI(selectedImage);
         }
-
-
     }
 
-    private class RegisterPlayer extends AsyncTask<Void, Void, Void>{
+    private class RegisterPlayer extends AsyncTask<Void, Void, Void >{
         Bitmap bit;
+        String encodedBitmap;
 
         public RegisterPlayer (Bitmap b){
             bit = b;
@@ -89,7 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
         protected Void doInBackground(Void... voids) {
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
             bit.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream);
-            String encodedBitmap = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT);
+            encodedBitmap = android.util.Base64.encodeToString(byteArrayOutputStream.toByteArray(), android.util.Base64.DEFAULT);
 
             PlayerApi playerToAdd = new PlayerApi( username.getText().toString(), Integer.valueOf(age.getText().toString()),
                     encodedBitmap, password.getText().toString());
@@ -98,11 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
                 @Override
                 public void success(Response response, Response response2) {
                     Toast.makeText(getBaseContext(), username.getText().toString()+" registered", Toast.LENGTH_LONG).show();
+                    finish();
                 }
 
                 @Override
                 public void failure(RetrofitError error) {
                     Toast.makeText(getBaseContext(), "invalid : "+ error.getMessage(), Toast.LENGTH_LONG).show();
+
                 }
             });
             return null;
@@ -111,7 +109,6 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Toast.makeText(getBaseContext(), "All done", Toast.LENGTH_LONG).show();
         }
     }
 

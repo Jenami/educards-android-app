@@ -52,6 +52,8 @@ public class JugarActivity extends AppCompatActivity {
 
     Integer id;
     String username;
+    String image;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,20 +104,21 @@ public class JugarActivity extends AppCompatActivity {
             target4.setOnDragListener(dragListener);
             target5.setOnDragListener(dragListener);
 
-            TextView name = findViewById(R.id.textViewNamePlayer);
-            String text = getIntent().getExtras().getString("name");
-
-            ImageView userImage = findViewById(R.id.imageViewUserImage);
-
-            String image1 = getIntent().getExtras().getString("image");
-
-            Bitmap res = stringToBitmap(image1);
-            userImage.setImageBitmap(res);
 
             this.id = getIntent().getExtras().getInt("id");
+            TextView name = findViewById(R.id.textViewNamePlayer);
+            String text = getIntent().getExtras().getString("name");
             this.username = text;
             name.setText(text);
 
+            ImageView userImage = findViewById(R.id.imageViewUserImage);
+
+            image= getIntent().getExtras().getString("image");
+
+            //if (image1 != "default" || image1 != "") {
+            Bitmap res = stringToBitmap(image);
+            userImage.setImageBitmap(res);
+            //}
 
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card1); cards.add(card2); cards.add(card3); cards.add(card4); cards.add(card5);
@@ -140,7 +143,6 @@ public class JugarActivity extends AppCompatActivity {
                             educards.setPointsPlayer (new PointsPlayer(response));
 
                             List<Integer> points = educards.pointsPlayer.getPoints();
-                            Toast.makeText(getBaseContext(),points.get(0).toString(), Toast.LENGTH_LONG).show();
 
                             ArrayList<String> scoreParsed;
                             scoreParsed = new ArrayList<>();
@@ -149,6 +151,7 @@ public class JugarActivity extends AppCompatActivity {
                             }
 
                             openPlayCardsDialog(username, scoreParsed);
+
                         }
 
                         @Override

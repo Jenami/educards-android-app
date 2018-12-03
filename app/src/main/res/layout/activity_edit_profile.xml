@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/index2"
-    tools:context=".RegisterActivity">
+    tools:context=".EditProfileActivity">
 
     <EditText
-        android:id="@+id/editTextUsername"
+        android:id="@+id/editTextUsernameEdit"
         android:layout_width="190dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
@@ -16,7 +16,6 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/text_frame"
         android:gravity="center"
-        android:hint="@string/playerUsername"
         android:inputType="text"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -27,7 +26,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextPassword"
+        android:id="@+id/editTextPasswordEdit"
         android:layout_width="190dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
@@ -35,7 +34,6 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/text_frame"
         android:gravity="center"
-        android:hint="@string/playerPassword"
         android:inputType="textPassword"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -43,10 +41,10 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextUsernameEdit" />
 
     <EditText
-        android:id="@+id/playerAge"
+        android:id="@+id/playerAgeEdit"
         android:layout_width="190dp"
         android:layout_height="46dp"
         android:layout_marginStart="8dp"
@@ -54,7 +52,6 @@
         android:layout_marginEnd="8dp"
         android:background="@drawable/text_frame"
         android:gravity="center"
-        android:hint="@string/playerAge"
         android:inputType="number"
         android:selectAllOnFocus="false"
         android:singleLine="true"
@@ -62,10 +59,10 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordEdit" />
 
     <Button
-        android:id="@+id/addImageButton"
+        android:id="@+id/addImageEditButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="164dp"
         android:layout_height="wrap_content"
@@ -76,11 +73,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playerAge"
+        app:layout_constraintTop_toBottomOf="@+id/playerAgeEdit"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/editButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="209dp"
         android:layout_height="50dp"
@@ -88,17 +85,17 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="50dp"
-        android:text="@string/register"
+        android:text="@string/editUser"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addImageButton"
+        app:layout_constraintTop_toBottomOf="@+id/addImageEditButton"
         app:layout_constraintVertical_bias="1.0" />
 
 
     <ImageView
-        android:id="@+id/userImage"
+        android:id="@+id/userImageEdit"
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="300dp"
