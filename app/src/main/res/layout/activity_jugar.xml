@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_index"
+    android:background="@drawable/index2"
     tools:context=".JugarActivity">
 
     <LinearLayout
@@ -70,7 +70,6 @@
                 android:id="@+id/imageViewBackground"
                 android:layout_width="match_parent"
                 android:layout_height="322dp"
-                android:background="@drawable/background_low_res"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

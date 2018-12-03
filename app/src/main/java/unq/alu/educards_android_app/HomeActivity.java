@@ -47,8 +47,8 @@ public class HomeActivity extends AppCompatActivity {
             this.age = getIntent().getExtras().getInt("age");
 
             //if (image != "default" || image != "") {
-                Bitmap res = stringToBitmap(image);
-                userImage.setImageBitmap(res);
+            Bitmap res = stringToBitmap(image);
+            userImage.setImageBitmap(res);
             //}
 
             nameTextView.setText(username);
@@ -68,15 +68,14 @@ public class HomeActivity extends AppCompatActivity {
             editButtonHome.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getBaseContext(), "home id " + id.toString(), Toast.LENGTH_LONG).show();
-                    Intent startIntent = new Intent(HomeActivity.this, EditProfileActivity.class);
-                    startIntent.putExtra("id", id);
-                    startIntent.putExtra("name", username);
-                    startIntent.putExtra("image", image);
-                    startIntent.putExtra("age", age);
-                    startIntent.putExtra("password", password);
+                    Intent editIntent = new Intent(HomeActivity.this, EditProfileActivity.class);
+                    editIntent.putExtra("id", id);
+                    editIntent.putExtra("name", username);
+                    editIntent.putExtra("image", image);
+                    editIntent.putExtra("age", age);
+                    editIntent.putExtra("password", password);
 
-                    startActivity(startIntent);
+                    startActivity(editIntent);
                 }
             });
 

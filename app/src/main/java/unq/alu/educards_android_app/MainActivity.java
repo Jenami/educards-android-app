@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
                         startIntent.putExtra("image", p.getImage() );
                         startIntent.putExtra("password", p.getPassword());
                         startIntent.putExtra("age", p.getAge());
+
                         startActivity(startIntent);
                     }
 
-                    //refactor cachear error de api
                     @Override
                     public void failure(RetrofitError error) {
                         Toast.makeText(getBaseContext(), "Invalid username or password", Toast.LENGTH_LONG).show();
@@ -56,13 +56,10 @@ public class MainActivity extends AppCompatActivity {
         registerButtonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent startIntent = new Intent(getApplicationContext(), RegisterActivity.class);
-                startIntent.putExtra("unq.alu.educards_android_app.EXTRA", playerName.getText().toString());
-                startActivity(startIntent);
+                Intent registerIntent = new Intent(getApplicationContext(), RegisterActivity.class);
+                registerIntent.putExtra("extra", playerName.getText().toString());
+                startActivity(registerIntent);
             }
         });
-
-
-
     }
 }

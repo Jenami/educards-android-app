@@ -32,8 +32,7 @@ public interface EducardsService {
         @POST("/api/rankings")
         void addRanking (@Body RankingAPI ranking, Callback<List<Integer>> points);
 
-        @PUT("/api/players/{id}")
-        void editPlayer(@Path("id") Integer id, @Query("name") String name, @Query("age") Integer age,
-                        @Query("password") String password, Callback<Player>player);
+        @PUT("/api/players")
+        void editPlayer(@Body Player p, Callback<Player>player);
 
 }
