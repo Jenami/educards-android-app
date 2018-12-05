@@ -3,13 +3,12 @@ package unq.alu.educards_android_app;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatDialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -63,7 +62,8 @@ public class JugarDialog extends AppCompatDialogFragment {
                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-
+                        Intent returnHome = new Intent(JugarActivity.BROADCAST_JUGARACTIVITY_CLOSE);
+                        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(returnHome);
                     }
                 });
 
