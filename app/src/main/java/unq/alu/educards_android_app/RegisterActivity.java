@@ -3,7 +3,7 @@ package unq.alu.educards_android_app;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.media.Image;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -13,13 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.ByteArrayOutputStream;
-import java.util.Base64;
 
-import educards.educards_model.EducardsFactory;
+import educards.educards_service.EducardsFactory;
 import educards.educards_model.PlayerApi;
 import retrofit.Callback;
 import retrofit.RetrofitError;

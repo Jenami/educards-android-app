@@ -102,7 +102,6 @@
         android:layout_width="70dp"
         android:layout_height="70dp"
         android:layout_marginTop="300dp"
-        android:background="@drawable/espacio_carta"
         android:contentDescription="@string/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,32 +1,30 @@
 package unq.alu.educards_android_app;
 
+import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ClipData;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Base64;
 import android.view.DragEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 
 import java.util.List;
 import educards.educards_model.Board;
 import educards.educards_model.Card;
 import educards.educards_model.Educards;
-import educards.educards_model.EducardsFactory;
-import educards.educards_model.Player;
+import educards.educards_service.EducardsFactory;
 import educards.educards_model.PointsPlayer;
 import educards.educards_model.RankingAPI;
 import educards.educards_model.RankingModel;
@@ -37,18 +35,13 @@ import retrofit.client.Response;
 
 public class JugarActivity extends AppCompatActivity {
 
+    static final String BROADCAST_JUGARACTIVITY_CLOSE = "JUGARACTIVITY_CLOSE";
+
     ImageView image1, image2, image3, image4, image5;
     ImageView target1, target2, target3, target4, target5;
     Card card1, card2, card3, card4, card5;
-    Player player;
     Board board;
     Educards educards;
-
-    Button playCardsButton;
-    Button seeRankingButton;
-
-    List<RankingModel> ranking;
-    ArrayList<String> rankingParsed;
 
     Integer id;
     String username;
@@ -59,6 +52,11 @@ public class JugarActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_jugar);
+
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BROADCAST_JUGARACTIVITY_CLOSE);
+        broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
 
         card1 = new Card ("beethoven", 1, "Beethoven", "history1",1770, "bee") ;
         card2 = new Card ("abraham", 2, "Abraham", "history2",1865, "lincoln") ;
@@ -105,20 +103,19 @@ public class JugarActivity extends AppCompatActivity {
             target5.setOnDragListener(dragListener);
 
 
-            this.id = getIntent().getExtras().getInt("id");
+            id = getIntent().getExtras().getInt("id");
+
             TextView name = findViewById(R.id.textViewNamePlayer);
             String text = getIntent().getExtras().getString("name");
-            this.username = text;
+
+            username = text;
             name.setText(text);
 
             ImageView userImage = findViewById(R.id.imageViewUserImage);
-
             image= getIntent().getExtras().getString("image");
 
-            //if (image1 != "default" || image1 != "") {
             Bitmap res = stringToBitmap(image);
             userImage.setImageBitmap(res);
-            //}
 
             ArrayList<Card> cards = new ArrayList<>();
             cards.add(card1); cards.add(card2); cards.add(card3); cards.add(card4); cards.add(card5);
@@ -131,7 +128,7 @@ public class JugarActivity extends AppCompatActivity {
                 educards.board.playCard(i, cardX);
             }
 
-            playCardsButton = findViewById(R.id.buttonJugar);
+            Button playCardsButton = findViewById(R.id.buttonJugar);
             playCardsButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -152,17 +149,18 @@ public class JugarActivity extends AppCompatActivity {
 
                             openPlayCardsDialog(username, scoreParsed);
 
+
                         }
 
                         @Override
                         public void failure(RetrofitError error) {
-                            Toast.makeText(getBaseContext(), "AddRanking Failed "+ id.toString(), Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), "Error, try again later ", Toast.LENGTH_LONG).show();
                         }
                     });
                 }
             });
 
-            seeRankingButton = findViewById(R.id.buttonRanking);
+            Button seeRankingButton = findViewById(R.id.buttonRanking);
             seeRankingButton.setOnClickListener(new View.OnClickListener() {
 
                 @Override
@@ -170,8 +168,8 @@ public class JugarActivity extends AppCompatActivity {
                     new EducardsFactory().getServiceFactory().getRankings(new Callback<List<RankingModel>>() {
                         @Override
                         public void success(List<RankingModel> response, Response response2) {
-                            ranking = (List<RankingModel>) response;
-                            rankingParsed = new ArrayList<String>();
+                            List<RankingModel> ranking = response;
+                            ArrayList<String> rankingParsed = new ArrayList<String>();
                             for (RankingModel r : ranking) {
                                 rankingParsed.add( " " + r.getName() + " --- " + r.getRank().toString() + " " );
                             }
@@ -180,7 +178,7 @@ public class JugarActivity extends AppCompatActivity {
 
                         @Override
                         public void failure(RetrofitError error) {
-
+                            Toast.makeText(getBaseContext(), "Try again later : "+ error.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -212,7 +210,7 @@ public class JugarActivity extends AppCompatActivity {
                 case DragEvent.ACTION_DRAG_EXITED:
                     break;
                 case DragEvent.ACTION_DROP:
-                    educards.board.playCard( (Integer)v.getTag(), ((Card) vi.getTag()));
+                    educards.board.playCard((Integer)v.getTag(), ((Card) vi.getTag()));
                     animateView(vi, v);
                     v.setVisibility(View.INVISIBLE);
                     break;
@@ -226,7 +224,7 @@ public class JugarActivity extends AppCompatActivity {
             animatedView.animate()
                     .x(target.getX())
                     .y(target.getY())
-                    .setDuration(800)
+                    .setDuration(700)
                     .start();
         }
     };
@@ -266,6 +264,7 @@ public class JugarActivity extends AppCompatActivity {
         rankingDialog.setArguments(bundle);
         rankingDialog.show(getSupportFragmentManager(), "dialog");
 
+
     }
 
     public Bitmap stringToBitmap(String encodedString){
@@ -281,6 +280,13 @@ public class JugarActivity extends AppCompatActivity {
 
     }
 
-
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(BROADCAST_JUGARACTIVITY_CLOSE)){
+                finish();
+            }
+        }
+    };
 
 }

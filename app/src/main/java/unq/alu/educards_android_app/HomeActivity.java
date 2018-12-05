@@ -1,5 +1,9 @@
 package unq.alu.educards_android_app;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
@@ -14,7 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import educards.educards_model.EducardsFactory;
+import educards.educards_service.EducardsFactory;
 import educards.educards_model.RankingModel;
 import retrofit.Callback;
 import retrofit.RetrofitError;
@@ -22,16 +26,24 @@ import retrofit.client.Response;
 
 public class HomeActivity extends AppCompatActivity {
 
-    Integer id;
-    Integer age;
-    String username;
-    String password;
-    String image;
+    static final String BROADCAST_HOMEACTIVITY_EDIT = "HOMEACTIVITY_EDIT";
+
+    private Integer id;
+    private Integer age;
+    protected String username;
+    private String password;
+    protected String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        LocalBroadcastManager broadcastManager = LocalBroadcastManager.getInstance(this);
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(BROADCAST_HOMEACTIVITY_EDIT);
+        broadcastManager.registerReceiver(broadcastReceiver, intentFilter);
+
 
         TextView nameTextView = findViewById(R.id.textViewNamePlayer);
         ImageView userImage = findViewById(R.id.imageViewUserImage);
@@ -46,10 +58,8 @@ public class HomeActivity extends AppCompatActivity {
             this.id = getIntent().getExtras().getInt("id");
             this.age = getIntent().getExtras().getInt("age");
 
-            //if (image != "default" || image != "") {
             Bitmap res = stringToBitmap(image);
             userImage.setImageBitmap(res);
-            //}
 
             nameTextView.setText(username);
 
@@ -76,30 +86,29 @@ public class HomeActivity extends AppCompatActivity {
                     editIntent.putExtra("password", password);
 
                     startActivity(editIntent);
+
+
                 }
             });
 
 
             seeRankingButton.setOnClickListener(new View.OnClickListener() {
-                List<RankingModel> ranking;
-                ArrayList<String> rankingParsed;
-
                 @Override
                 public void onClick(View v) {
                     new EducardsFactory().getServiceFactory().getRankings(new Callback<List<RankingModel>>() {
                         @Override
                         public void success(List<RankingModel> response, Response response2) {
-                            ranking = (List<RankingModel>) response;
-                            rankingParsed = new ArrayList<String>();
+                            List<RankingModel> ranking = response;
+                            ArrayList<String> rankingParsed = new ArrayList<String>();
                             for (RankingModel r : ranking) {
-                                rankingParsed.add(" " + r.getName() + " --- " + r.getRank().toString() + " ");
+                                rankingParsed.add( " " + r.getName() + " --- " + r.getRank().toString() + " " );
                             }
                             openRankingDialog(rankingParsed);
                         }
 
                         @Override
                         public void failure(RetrofitError error) {
-
+                            Toast.makeText(getBaseContext(), "Try again later : "+ error.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
                 }
@@ -135,4 +144,21 @@ public class HomeActivity extends AppCompatActivity {
         rankingDialog.show(getSupportFragmentManager(), "dialog");
 
     }
+
+    private BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            if(intent.getAction().equals(BROADCAST_HOMEACTIVITY_EDIT)){
+                Intent home = getIntent();
+                finish();
+                home.putExtra("name", intent.getExtras().getString("nameEdit"));
+                home.putExtra("image", intent.getExtras().getString("imageEdit"));
+                home.putExtra("age", intent.getExtras().getInt("ageEdit"));
+                home.putExtra("id", intent.getExtras().getInt("idEdit"));
+                home.putExtra("password", intent.getExtras().getString("passEdit"));
+
+                startActivity(home);
+            }
+        }
+    };
 }
